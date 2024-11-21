@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Eco-Friendly Practices</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        header {
+            background-color: #4caf50;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        main {
+            padding: 20px;
+            max-width: 800px;
+            margin: auto;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .tip {
+            background: #e8f5e9;
+            border-left: 5px solid #4caf50;
+            margin: 10px 0;
+            padding: 10px;
+            display: none;
+        }
+        button {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .input-section {
+            margin-top: 20px;
+            background-color: #e8f5e9;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .input-section input {
+            width: calc(100% - 130px);
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        .input-section button {
+            width: 100px;
+        }
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 5px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Interactive Eco-Friendly Practices</h1>
+        <nav>
+            <a href="#practices">Practices</a>
+            <a href="#learn-more">Learn More</a>
+            <a href="#suggestion">Suggest</a>
+        </nav>
+    </header>
+    <main>
+        <section id="practices" class="section">
+            <h2>Eco-Friendly Practices</h2>
+            <ul>
+                <li class="tooltip">
+                    Switch to energy-efficient appliances
+                    <span class="tooltiptext">Use appliances with ENERGY STAR ratings for better efficiency.</span>
+                </li>
+                <li class="tooltip">
+                    Use renewable energy sources
+                    <span class="tooltiptext">Consider solar panels or wind turbines for green energy.</span>
+                </li>
+                <li class="tooltip">
+                    Unplug devices when not in use
+                    <span class="tooltiptext">Avoid phantom energy waste by unplugging idle devices.</span>
+                </li>
+            </ul>
+        </section>
+
+        <section id="learn-more" class="section">
+            <h2>Learn More</h2>
+            <button onclick="showMore()">Click to See More Tips</button>
+            <div class="tip" id="tip1">
+                <strong>Optimize Heating:</strong> Keep your thermostat set to energy-saving temperatures.
+            </div>
+            <div class="tip" id="tip2">
+                <strong>Install Smart Meters:</strong> Track real-time energy usage to identify waste.
+            </div>
+            <div class="tip" id="tip3">
+                <strong>Renewable Energy:</strong> Installing solar panels can reduce your dependency on fossil fuels.
+            </div>
+            <div class="tip" id="tip4">
+                <strong>Heating and Cooling:</strong> Regular maintenance improves efficiency and saves energy.
+            </div>
+        </section>
+
+        <section id="suggestion" class="input-section">
+            <h2>Suggest Your Own Practice</h2>
+            <p>Have an idea for an eco-friendly energy-saving tip? Share it below:</p>
+            <form id="suggestionForm">
+                <input type="text" id="userTip" placeholder="Enter your tip here..." required>
+                <button type="submit">Add Tip</button>
+            </form>
+            <h3>Community Suggestions:</h3>
+            <ul id="userTipsList"></ul>
+        </section>
+    </main>
+
+    <script>
+        let currentTip = 1;
+
+        function showMore() {
+            const tip = document.getElementById(`tip${currentTip}`);
+            if (tip) {
+                tip.style.display = "block";
+                currentTip++;
+            } else {
+                alert("No more tips to display!");
+            }
+        }
+
+        document.getElementById('suggestionForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const userTip = document.getElementById('userTip').value;
+            if (userTip.trim()) {
+                const li = document.createElement('li');
+                li.textContent = userTip;
+                document.getElementById('userTipsList').appendChild(li);
+                document.getElementById('userTip').value = '';
+            } else {
+                alert("Please enter a valid tip.");
+            }
+        });
+    </script>
+</body>
+</html>
